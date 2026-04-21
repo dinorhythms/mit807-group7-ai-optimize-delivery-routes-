@@ -4,14 +4,14 @@ from app.algorithms.search import bfs, dfs, astar
 from app.data.network_data import build_base_graph, build_heuristic, get_node_names, COMPANY_NAME, SOURCE_LOCATION
 from app.ml.travel_time import build_predicted_graph
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+application = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Initialize graph data
 base_graph = build_base_graph()
 node_names = get_node_names()
 
 
-@app.route('/')
+@application.route('/')
 def index():
     """Render the main page"""
     return render_template('index.html', 
@@ -20,13 +20,13 @@ def index():
                          node_names=node_names)
 
 
-@app.route('/api/nodes', methods=['GET'])
+@application.route('/api/nodes', methods=['GET'])
 def get_nodes():
     """Get list of available nodes"""
     return jsonify({'nodes': node_names})
 
 
-@app.route('/api/run-bfs', methods=['POST'])
+@application.route('/api/run-bfs', methods=['POST'])
 def run_bfs():
     """Run BFS algorithm"""
     data = request.json
@@ -48,7 +48,7 @@ def run_bfs():
     })
 
 
-@app.route('/api/run-dfs', methods=['POST'])
+@application.route('/api/run-dfs', methods=['POST'])
 def run_dfs():
     """Run DFS algorithm"""
     data = request.json
@@ -70,7 +70,7 @@ def run_dfs():
     })
 
 
-@app.route('/api/run-astar', methods=['POST'])
+@application.route('/api/run-astar', methods=['POST'])
 def run_astar():
     """Run A* algorithm with dynamic weights"""
     data = request.json
@@ -102,7 +102,7 @@ def run_astar():
     })
 
 
-@app.route('/health', methods=['GET'])
+@application.route('/health', methods=['GET'])
 def health():
     """Health check endpoint"""
     return jsonify({'status': 'healthy'}), 200
@@ -110,4 +110,4 @@ def health():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    application.run(host='0.0.0.0', port=port, debug=False)
