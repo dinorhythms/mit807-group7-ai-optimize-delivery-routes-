@@ -1,0 +1,12 @@
+
+MetroSwift Desktop Build Guidance
+
+Primary lecturer run method
+1. Install Python 3.10 or newer
+2. Open terminal in the project root
+3. Run python main.py
+
+Optional executable packaging command
+pyinstaller --onefile --windowed main.py --name MetroSwiftDesktopApp
+
+The built executable would typically appear in the dist folder after running PyInstaller on a local machine.

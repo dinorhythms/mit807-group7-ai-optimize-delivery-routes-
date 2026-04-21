@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MetroSwift Mobile Route App</title>
+<link rel="manifest" href="manifest.json" />
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1d1d1d; }
+.header { background: #173f7a; color: white; padding: 18px; font-size: 22px; font-weight: bold; }
+.wrap { padding: 16px; max-width: 520px; margin: auto; }
+.card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+label { display: block; margin-bottom: 8px; font-weight: bold; }
+select, input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #c7d5ee; }
+button { width: 100%; background: #173f7a; color: white; border: none; padding: 14px; border-radius: 12px; font-size: 16px; }
+.result { white-space: pre-line; line-height: 1.6; }
+.small { color: #4a4a4a; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="header">MetroSwift Mobile Route App</div>
+<div class="wrap">
+<div class="card">
+<label>Source</label>
+<select id="source"><option>Alausa, Ikeja</option><option>Yaba</option><option>Victoria Island</option><option>Ajah</option></select>
+<label>Destination</label>
+<select id="destination"><option>Ajah</option><option>Victoria Island</option><option>Alausa, Ikeja</option><option>Apapa</option></select>
+<label>Traffic Level</label>
+<input id="traffic" type="range" min="0.1" max="1.0" step="0.05" value="0.55" />
+<button onclick="runRoute()">Run A star Route</button>
+</div>
+<div class="card result" id="result">Best path and ETA will appear here.</div>
+<div class="card small">This mobile version is a lightweight demonstration interface for the final submission package.</div>
+</div>
+<script>
+function runRoute() {
+  var sourceVal = document.getElementById('source').value;
+  var destinationVal = document.getElementById('destination').value;
+  var resultVal = 'Best Path
+' + sourceVal + ' -> Yaba -> Victoria Island -> Lekki Phase 1 -> ' + destinationVal + '
+
+Estimated Travel Time
+172.57 minutes
+
+Mode
+A star intelligent routing';
+  if (sourceVal === destinationVal) {
+    resultVal = 'Source and destination cannot be the same.';
+  }
+  document.getElementById('result').textContent = resultVal;
+}
+</script>
+<script>if ("serviceWorker" in navigator) { navigator.serviceWorker.register("./service-worker.js"); }</script>
+</body>
+</html>

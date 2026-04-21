@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MetroSwift Logistics - AI Route Optimizer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <h1>{{ company_name }}</h1>
+          <p class="subtitle">Lagos Route Optimization System</p>
+          <p class="depot-info">
+            Primary depot: <strong>{{ source_location }}</strong>
+          </p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Control Panel -->
+        <section class="control-panel">
+          <div class="form-grid">
+            <!-- Source Selection -->
+            <div class="form-group">
+              <label for="source">Source Location</label>
+              <select id="source" class="form-control">
+                <option selected>{{ source_location }}</option>
+              </select>
+            </div>
+
+            <!-- Destination Selection -->
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <select id="destination" class="form-control">
+                <option>Ajah</option>
+              </select>
+            </div>
+
+            <!-- Traffic Level -->
+            <div class="form-group">
+              <label for="traffic">Traffic Level</label>
+              <div class="slider-container">
+                <input
+                  type="range"
+                  id="traffic"
+                  min="0.1"
+                  max="1"
+                  step="0.05"
+                  value="0.55"
+                  class="slider"
+                />
+                <span class="slider-value" id="traffic-value">0.55</span>
+              </div>
+            </div>
+
+            <!-- Peak Factor -->
+            <div class="form-group">
+              <label for="peak">Peak Factor</label>
+              <div class="slider-container">
+                <input
+                  type="range"
+                  id="peak"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.35"
+                  class="slider"
+                />
+                <span class="slider-value" id="peak-value">0.35</span>
+              </div>
+            </div>
+
+            <!-- Weather Factor -->
+            <div class="form-group">
+              <label for="weather">Weather Impact</label>
+              <div class="slider-container">
+                <input
+                  type="range"
+                  id="weather"
+                  min="0"
+                  max="0.6"
+                  step="0.05"
+                  value="0.10"
+                  class="slider"
+                />
+                <span class="slider-value" id="weather-value">0.10</span>
+              </div>
+            </div>
+
+            <!-- Reroute Impact -->
+            <div class="form-group">
+              <label for="reroute">Reroute Impact</label>
+              <div class="slider-container">
+                <input
+                  type="range"
+                  id="reroute"
+                  min="0"
+                  max="0.5"
+                  step="0.05"
+                  value="0.08"
+                  class="slider"
+                />
+                <span class="slider-value" id="reroute-value">0.08</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Algorithm Buttons -->
+          <div class="button-group">
+            <button class="btn btn-primary" id="bfs-btn">
+              <span class="btn-label">BFS Search</span>
+              <span class="btn-desc">Breadth First</span>
+            </button>
+            <button class="btn btn-primary" id="dfs-btn">
+              <span class="btn-label">DFS Search</span>
+              <span class="btn-desc">Depth First</span>
+            </button>
+            <button class="btn btn-success" id="astar-btn">
+              <span class="btn-label">A* Optimizer</span>
+              <span class="btn-desc">AI Route</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+          <div class="results-header">
+            <h2>Route Analysis</h2>
+            <div class="status" id="status">Ready</div>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Analyzing routes...</p>
+          </div>
+
+          <!-- Error Message -->
+          <div id="error" class="error-message hidden"></div>
+
+          <!-- Results Display -->
+          <div id="results" class="results-output hidden">
+            <div class="result-item algorithm-title">
+              <strong id="result-title">Result</strong>
+            </div>
+
+            <div class="result-section">
+              <h3>Traversal Order</h3>
+              <div id="traversal" class="result-content">—</div>
+            </div>
+
+            <div class="result-section">
+              <h3>Optimal Path</h3>
+              <div id="path" class="result-content">—</div>
+            </div>
+
+            <div class="result-section">
+              <h3>Metrics</h3>
+              <div id="metrics" class="result-content">—</div>
+            </div>
+
+            <div id="scenario" class="result-section hidden">
+              <h3>Scenario Parameters</h3>
+              <div id="scenario-content" class="result-content">—</div>
+            </div>
+          </div>
+
+          <!-- Initial Message -->
+          <div id="initial-message" class="initial-message">
+            <p>
+              Use <strong>A* Optimizer</strong> as the primary AI route
+              optimizer. The source is dynamic, so a rider can start from the
+              depot or from any delivery node for rerouting and return-to-base
+              operations.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          MetroSwift Logistics - AI-Powered Route Optimization for Lagos
+          Delivery Operations
+        </p>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

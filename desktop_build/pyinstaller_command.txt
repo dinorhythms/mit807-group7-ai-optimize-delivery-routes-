@@ -1,0 +1,4 @@
+
+# PyInstaller command reference for MetroSwift desktop packaging
+# Run this locally if you want a standalone executable
+pyinstaller --onefile --windowed main.py --name MetroSwiftDesktopApp
