@@ -2,9 +2,9 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-from app.algorithms.search import bfs, dfs, astar
-from app.data.network_data import build_base_graph, build_heuristic, SOURCE_LOCATION
-from app.ml.travel_time import build_predicted_graph
+from core.algorithms.search import bfs, dfs, astar
+from core.data.network_data import build_base_graph, build_heuristic, SOURCE_LOCATION
+from core.ml.travel_time import build_predicted_graph
 
 
 def run_tests():

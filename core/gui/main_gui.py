@@ -1,9 +1,9 @@
 
 import tkinter as tk
 from tkinter import ttk
-from app.algorithms.search import bfs, dfs, astar
-from app.data.network_data import build_base_graph, build_heuristic, get_node_names, COMPANY_NAME, SOURCE_LOCATION
-from app.ml.travel_time import build_predicted_graph
+from core.algorithms.search import bfs, dfs, astar
+from core.data.network_data import build_base_graph, build_heuristic, get_node_names, COMPANY_NAME, SOURCE_LOCATION
+from core.ml.travel_time import build_predicted_graph
 
 
 def format_result(title_txt, traversal_order, path_list, total_cost=None, cost_label='Total Cost'):
